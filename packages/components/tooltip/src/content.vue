@@ -1,47 +1,22 @@
 <template>
-  <teleport :disabled="!teleported" :to="appendTo">
-    <transition
-      :name="transitionClass"
-      @after-leave="onTransitionLeave"
-      @before-enter="onBeforeEnter"
-      @after-enter="onAfterShow"
-      @before-leave="onBeforeLeave"
-    >
-      <el-popper-content
-        v-if="shouldRender"
-        v-show="shouldShow"
-        :id="id"
-        ref="contentRef"
-        v-bind="$attrs"
-        :aria-label="ariaLabel"
-        :aria-hidden="ariaHidden"
-        :boundaries-padding="boundariesPadding"
-        :fallback-placements="fallbackPlacements"
-        :gpu-acceleration="gpuAcceleration"
-        :offset="offset"
-        :placement="placement"
-        :popper-options="popperOptions"
-        :strategy="strategy"
-        :effect="effect"
-        :enterable="enterable"
-        :pure="pure"
-        :popper-class="popperClass"
-        :popper-style="[popperStyle, contentStyle]"
-        :reference-el="referenceEl"
-        :trigger-target-el="triggerTargetEl"
-        :visible="shouldShow"
-        :z-index="zIndex"
-        @mouseenter="onContentEnter"
-        @mouseleave="onContentLeave"
-        @blur="onBlur"
-        @close="onClose"
-      >
-        <template v-if="!destroyed">
-          <slot />
-        </template>
-      </el-popper-content>
-    </transition>
-  </teleport>
+  <div>
+    <teleport :disabled="!teleported" :to="appendTo">
+      <transition :name="transitionClass" @after-leave="onTransitionLeave" @before-enter="onBeforeEnter"
+        @after-enter="onAfterShow" @before-leave="onBeforeLeave">
+        <el-popper-content v-if="shouldRender" v-show="shouldShow" :id="id" ref="contentRef" v-bind="$attrs"
+          :aria-label="ariaLabel" :aria-hidden="ariaHidden" :boundaries-padding="boundariesPadding"
+          :fallback-placements="fallbackPlacements" :gpu-acceleration="gpuAcceleration" :offset="offset"
+          :placement="placement" :popper-options="popperOptions" :strategy="strategy" :effect="effect"
+          :enterable="enterable" :pure="pure" :popper-class="popperClass" :popper-style="[popperStyle, contentStyle]"
+          :reference-el="referenceEl" :trigger-target-el="triggerTargetEl" :visible="shouldShow" :z-index="zIndex"
+          @mouseenter="onContentEnter" @mouseleave="onContentLeave" @blur="onBlur" @close="onClose">
+          <template v-if="!destroyed">
+            <slot />
+          </template>
+        </el-popper-content>
+      </transition>
+    </teleport>
+  </div>
 </template>
 
 <script lang="ts" setup>
